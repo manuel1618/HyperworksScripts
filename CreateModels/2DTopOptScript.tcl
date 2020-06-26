@@ -1,5 +1,9 @@
 # Hyperparameter
 set volumeFracUpperBound 0.3
+set thicknessDesignSpace 1
+set thicknessNonDesignSpace 1
+set basethickness 0
+
 
 
 
@@ -11,12 +15,14 @@ set volumeFracUpperBound 0.3
 *setvalue mats id=1 STATUS=1 4=7.85e-09
 
 # properties
-*createentity props cardimage=PSOLID includeid=0 name=designProperty
+*createentity props cardimage=PSHELL includeid=0 name=designProperty
 *setelementcolormode 2
+*setvalue props id=1 STATUS=1 95=$thicknessDesignSpace
 *setvalue props id=1 materialid={mats 1}
 
-*createentity props cardimage=PSOLID includeid=0 name=nonDesignProperty
+*createentity props cardimage=PSHELL includeid=0 name=nonDesignProperty
 *setelementcolormode 2
+*setvalue props id=2 STATUS=1 95=$thicknessNonDesignSpace
 *setvalue props id=2 materialid={mats 1}
 
 # Components
@@ -76,7 +82,8 @@ set volumeFracUpperBound 0.3
 *createentity designvars config=108 name=TopOptDesVar
 *setvalue designvars id=1 STATUS=0 9627=0
 *mergehistorystate "" ""
-*setvalue designvars id=1 STATUS=2 propertytypename="PSOLID"
+*setvalue designvars id=1 STATUS=2 propertytypename="PSHELL"
+*setvalue designvars id=1 STATUS=2 basethickness=$basethickness
 *retainmarkselections 1
 *retainmarkselections 0
 *retainmarkselections 1
